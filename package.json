@@ -1,0 +1,28 @@
+{
+  "name": "backend-for-waggle",
+  "version": "1.0.0",
+  "main": "listen.js",
+  "type": "module",
+  "scripts": {
+    "dev": "ndoemon listen.js",
+    "start": "node listen.js",
+    "seed-prod": "NODE_ENV=production npm run seed",
+    "seed": "node ./db/seed.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "seed:dev": "NODE_ENV=development node db/seed.js",
+    "seed:test": "NODE_ENV=test node db/seed.js",
+    "setup-dbs": "psql -f ./db/setup.sql"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "pg": "^8.13.1",
+    "pg-format": "^1.0.4"
+  }
+}
