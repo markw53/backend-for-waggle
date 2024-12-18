@@ -7,7 +7,6 @@ export default function seed({ ownerData, userData, dogData }) {
     .then(() => db.query(`DROP TABLE IF EXISTS owners CASCADE;`))
     .then(() => db.query(`DROP TABLE IF EXISTS users CASCADE;`))
     .then(() => {
-      // Create owners table
       return db.query(`
         CREATE TABLE owners (
           owner_id SERIAL PRIMARY KEY,
@@ -17,7 +16,6 @@ export default function seed({ ownerData, userData, dogData }) {
       `);
     })
     .then(() => {
-      // Create users table with firebase_uid instead of password
       return db.query(`
         CREATE TABLE users (
           user_id SERIAL PRIMARY KEY,
@@ -30,7 +28,6 @@ export default function seed({ ownerData, userData, dogData }) {
       `);
     })
     .then(() => {
-      // Create dogs table
       return db.query(`
         CREATE TABLE dogs (
           dog_id SERIAL PRIMARY KEY,
@@ -54,7 +51,6 @@ export default function seed({ ownerData, userData, dogData }) {
       `);
     })
     .then(() => {
-      // Insert owners
       const insertOwnerQueryStr = format(
         "INSERT INTO owners (name, contact_info) VALUES %L RETURNING owner_id;",
         ownerData.map(({ name, contact_info }) => [name, JSON.stringify(contact_info)])
@@ -62,7 +58,6 @@ export default function seed({ ownerData, userData, dogData }) {
       return db.query(insertOwnerQueryStr);
     })
     .then(() => {
-      // Insert users
       const insertUserQueryStr = format(
         "INSERT INTO users (firebase_uid, username, email, phone_number, created_at) VALUES %L RETURNING user_id;",
         userData.map(({ firebase_uid, username, email, phone_number, created_at }) => [
@@ -76,7 +71,6 @@ export default function seed({ ownerData, userData, dogData }) {
       return db.query(insertUserQueryStr);
     })
     .then(() => {
-      // Insert dogs
       const insertDogQueryStr = format(
         `
         INSERT INTO dogs (

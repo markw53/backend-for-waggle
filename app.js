@@ -13,7 +13,6 @@ app.use("/api/dogs", dogsRoutes);
 app.use("/api/owners", ownersRoutes);
 app.use("/api/users", usersRoutes);
 
-// Error-handling middleware
 app.use((err, req, res, next) => {
   console.error(err);
   res.status(500).json({ error: "Internal server error" });
