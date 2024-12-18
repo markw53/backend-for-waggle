@@ -3,8 +3,8 @@ import {
     getAllUsers,
     getUserById,
     createUser,
-    updatedUser,
-    deletedUser,
+    updateUser,
+    deleteUser,
 } from "../controllers/usersController.js";
 
 const router = express.Router();
@@ -12,7 +12,7 @@ const router = express.Router();
 router.get("/", getAllUsers);
 router.get("/:id", getUserById);
 router.post("/", createUser);
-router.patch("/:id", updatedUser);
-router.delete("/:id", deletedUser);
+router.patch("/:id", updateUser);
+router.delete("/:id", deleteUser);
 
 export default router;
